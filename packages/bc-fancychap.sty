@@ -1,0 +1,26 @@
+
+
+%<-----------------hlavièky kapitol--------------------->
+%\usepackage[Sonny]{fncychap}%
+%\usepackage[Lenny]{fncychap}%
+%\usepackage[PetersLenny]{fncychap}%
+%\usepackage[Bjornstrup]{fncychap}%
+%\usepackage[Glenn]{fncychap}%
+%\usepackage[Conny]{fncychap}%
+%\usepackage[Rejne]{fncychap}%
+\usepackage[Bjarne]{fncychap}%V pùvodním balíèku chybí èeština pr styl Bjarna, 
+% a proto ji zavedeme. Nutno zakomentovat použijeme-li jiný styl než Bjarne:
+  \ChNameVar{\raggedleft\normalsize\sf}
+   \ChNumVar{\raggedleft \bfseries\Large}
+  \ChTitleVar{\raggedleft \Large\sf}
+  \renewcommand{\AlphaNo}{%
+    \ifcase\number\theAlphaCnt
+      \ifnum\c@chapter=0
+        ZERO\else{}\fi
+    \or PRVN\'I\or DRUH\'A\or T\v{R}ET\'I\or \v{C}TVRT\'A\or P\'AT\'A
+    \or \v{S}EST\'{A}\or SEDM\'A\or OSM\'A\or DEV\'AT\'A\or DES\'AT\'A
+    \or JEDEN\'ACT\'A\or DVAN\'ACT\'A\or T\v{R}IN\'ACT\'A\or \v{C}TRN\'ACT\'A\or PATN\'ACT\'A
+    \or \v{S}ESTN\'ACT\'A\or SEDMN\'ACT\'A\or OSMN\'ACT\'A\or DEVATEN\'ACT\'A\fi
+}
+
+%<------------------------------------------------------>

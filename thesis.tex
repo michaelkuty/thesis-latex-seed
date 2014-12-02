@@ -1,0 +1,287 @@
+
+\documentclass[a4paper,czech,czech,openright,cleardoubleempty,BCOR10mm,DIV11]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{varioref}
+\usepackage{wrapfig}
+\usepackage{fancybox}
+\usepackage{calc}
+\usepackage{framed}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{placeins} %floatbarrier \FloatBarrier
+%\usepackage{listing}
+\usepackage{pdfpages}
+
+\makeatletter
+
+\usepackage[font=small,labelfont=bf]{caption} %captiony
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX coěmmands.
+\providecommand{\LyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+\newcommand{\lyxline}[1][1pt]{%
+  \par\noindent%
+  \rule[.5ex]{\linewidth}{#1}\par}
+\newcommand{\noun}[1]{\textsc{#1}}
+%% Special footnote code from the package 'stblftnt.sty'
+%% Author: Robin Fairbairns -- Last revised Dec 13 1996
+\let\SF@@footnote\footnote
+\def\footnote{\ifx\protect\@typeset@protect
+    \expandafter\SF@@footnote
+  \else
+    \expandafter\SF@gobble@opt
+  \fi
+}
+
+\renewcommand{\baselinestretch}{1.2} %radkovani s
+
+\expandafter\def\csname SF@gobble@opt \endcsname{\@ifnextchar[%]
+  \SF@gobble@twobracket
+  \@gobble
+}
+\edef\SF@gobble@opt{\noexpand\protect
+  \expandafter\noexpand\csname SF@gobble@opt \endcsname}
+\def\SF@gobble@twobracket[#1]#2{}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newenvironment{lyxcode}
+{\begin{list}{}{
+\setlength{\rightmargin}{\leftmargin}
+\setlength{\listparindent}{0pt}% needed for AMS classes
+\raggedright
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\normalfont\ttfamily}%
+ \item[]}
+{\end{list}}
+
+%<-------------------------------společná nastavení------------------------------>
+\usepackage[czech]{babel} % localize labels to czech (Obsah, Kapitola, Literatura atp.)
+\usepackage[]{hyperref} %odkazy v  pdf jsou klikací s barevnými rámečky
+\usepackage[numbers,sort&compress]{natbib} %balíček pro citace literatury  
+\usepackage{hypernat}%interakce mezi hyperref a natbib
+\hypersetup{   % some PDF metadata
+pdftitle={Platforma Vert.x},%   
+pdfauthor={Michael Kutý},%  
+pdfsubject={},%   
+pdfkeywords={Vert.x, D3.js, MongoDB}%                             
+}
+\usepackage{multicol}
+
+
+
+%<------------------------------------font settings----------------------------------------->
+%\usepackage{packages/bc-latinmodern}
+%\usepackage{packages/bc-times}
+\usepackage{packages/bc-palatino}
+%\usepackage{packages/bc-iwona}
+%\usepackage{packages/bc-helvetika}
+
+
+%<------------------------------headings stránek------------------------------------>
+%\usepackage{packages/bc-headings}
+\usepackage{packages/bc-fancyhdr}
+
+%\usepackage{packages/bc-neueskapitel}
+%\usepackage{packages/bc-fancychap}
+
+\makeatother
+
+\usepackage{babel}
+
+%<------------------------------snippets settings------------------------------------>
+\usepackage{listing}
+\usepackage{listings}
+\usepackage{color}
+
+\renewcommand*{\lstlistingname}{Ukázka kódu} % labeling
+\renewcommand*{\lstlistlistingname}{Seznam ukázek kódu} % labeling
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% syntax highlight for Java languae %
+\lstset{
+  %frame=r,
+  captionpos=b,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  xleftmargin=0.2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+    inputencoding=utf8,
+    extendedchars=true,
+    literate=%
+    {á}{{\'a}}1
+    {č}{{\v{c}}}1
+    {ď}{{\v{d}}}1
+    {é}{{\'e}}1
+    {ě}{{\v{e}}}1
+    {í}{{\'i}}1
+    {ň}{{\v{n}}}1
+    {ó}{{\'o}}1
+    {ř}{{\v{r}}}1
+    {š}{{\v{s}}}1
+    {ť}{{\v{t}}}1
+    {ú}{{\'u}}1
+    {ů}{{\r{u}}}1
+    {ý}{{\'y}}1
+    {ž}{{\v{z}}}1
+    {Á}{{\'A}}1
+    {Č}{{\v{C}}}1
+    {Ď}{{\v{D}}}1
+    {É}{{\'E}}1
+    {Ě}{{\v{E}}}1
+    {Í}{{\'I}}1
+    {Ň}{{\v{N}}}1
+    {Ó}{{\'O}}1
+    {Ř}{{\v{R}}}1
+    {Š}{{\v{S}}}1
+    {Ť}{{\v{T}}}1
+    {Ú}{{\'U}}1
+    {Ů}{{\r{U}}}1
+    {Ý}{{\'Y}}1
+    {Ž}{{\v{Z}}}1
+}
+
+\begin{document}
+
+\cleardoublepage{}~\thispagestyle{empty}\begin{center}\pagenumbering{roman}\vspace{10mm}
+
+
+\textsf{\textsc{\noun{\LARGE Univerzita Hradec Králové}}}\\
+\vspace{0.5em}
+\textsc{\noun{\LARGE Fakulta informatiky a managementu}}\\
+\vspace*{1em}
+\textsf{\textsc{\noun{\Large katedra informatiky a kvantitativních metod }}}
+
+\vspace{15mm}
+
+\includegraphics[width=0.4\textwidth]{logos/uhk}
+
+\vspace{15mm}
+
+
+\textsf{\huge BAKALÁŘSKÁ / DIPLOMOVÁ PRÁCE}{\huge \par}
+
+\vspace{15mm}
+
+
+\textsf{\LARGE Dummy Name Foo Bar}{\LARGE \par}
+
+\vspace{10mm}
+
+
+\end{center} 
+
+\vspace*{\fill}
+
+
+\vspace{10mm}
+
+\begin{description}
+\item [{{\large Autor:}}] \noindent \textsf{\large Foo Bar}{\large \par}
+\item [{{\large Vedoucí~práce:}}] \noindent \textsf{\large Bar Foo}{\large \hfill{}}\textsf{\large Moon, 2050}{\large{}
+}{\large \par}
+\end{description}
+\clearpage{}
+
+%{\small \thispagestyle{plain}\addcontentsline{toc}{chapter}{Abstrakt} }{\small \par}
+
+\newpage{}\thispagestyle{plain}
+
+{\small \setcounter{page}{3} % nastavení číslování stránek
+\ }{\small \par}
+
+\noindent {\small \vfill{}
+% set next text to bottom
+~}{\small \par}
+
+\subsubsection{Prohlášení}
+
+\noindent {\small Prohlašuji, že jsem bakalářskou práci vypracoval samostatně a uvedl jsem všechny použité prameny a literaturu.}{\small \par}
+
+{\small \bigskip{}
+}\noindent {\small{} V Hradci Králové dne \today\hspace{\fill}Foo Bar}\\
+{\small{} % doplňte patřičné datum, jméno a příjmení
+}{\small \par}
+
+\clearpage{}
+
+\newpage{}\thispagestyle{plain}
+
+{\small %\setcounter{page}{3} % nastavení číslování stránek
+\ }{\small \par}
+
+\noindent {\small \vfill{}
+ % set next text to bottom
+~}{\small \par}
+
+\subsubsection{Poděkování}
+
+\noindent {\small Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Duis pulvinar. Maecenas lorem. Mauris tincidunt sem sed arcu. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. \newpage{}}{\small \par}
+
+\clearpage{}
+
+\newpage{}\thispagestyle{plain}
+
+\noindent {\small \vfill{}
+~}{\small \par}
+
+\subsubsection{Anotace}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Duis pulvinar. Maecenas lorem. Mauris tincidunt sem sed arcu. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Phasellus rhoncus. Praesent vitae arcu tempor neque lacinia pretium. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Etiam posuere lacus quis dolor. Curabitur bibendum justo non orci. Praesent in mauris eu tortor porttitor accumsan. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Donec quis nibh at felis congue commodo. Integer tempor. Maecenas libero.
+
+\subsubsection{Annotation}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Duis pulvinar. Maecenas lorem. Mauris tincidunt sem sed arcu. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Phasellus rhoncus. Praesent vitae arcu tempor neque lacinia pretium. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Etiam posuere lacus quis dolor. Curabitur bibendum justo non orci. Praesent in mauris eu tortor porttitor accumsan. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Donec quis nibh at felis congue commodo. Integer tempor. Maecenas libero.
+
+
+\cleardoublepage{}
+
+{\small %%%   place for the signature
+%%%                                         *********
+}{\small \par}
+
+\cleardoublepage{}\thispagestyle{empty}{\small 
+
+%\setcounter{secnumdepth}{3}
+%\setcounter{tocdepth}{2}% depth of content
+
+\tableofcontents{}% generated content
+\cleardoublepage{}}{\small \par}
+
+\include{example}
+
+
+%<------------------------------bibliography------------------------------------>
+\begin{thebibliography}{10}
+
+\bibitem{JAX}Kamali, Masoud \emph{The Winners of the JAX Innovation Awards 2014}
+{[}online]. {[}cit. 2014-03-20]. Dostupný z WWW: \url{http://jax.de/awards2014/}
+
+\end{thebibliography}
+
+\cleardoublepage{}
+
+\include{prilohy}
+
+%<------------------------------external PDF------------------------------------>
+\includepdf[pages={1}]{zadani.pdf}
+
+\end{document}

@@ -1,0 +1,32 @@
+\pagenumbering{arabic}% start arabic pagination from 1 
+
+\chapter{Example Chapter}
+
+
+\begin{lstlisting}[caption=Some Java code with UTF-8 comments]
+// žluťoučký kůň +ěščřžýáíé
+import org.vertx.java.core.Handler;
+import org.vertx.java.core.http.HttpServerRequest;
+import org.vertx.java.platform.Verticle;
+
+public class Server extends Verticle {
+    public void start() {
+        vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
+            public void handle(HttpServerRequest req) {
+                String file = req.path().equals("/") ? "index.html" : req.path();
+                req.response().sendFile("webroot/" + file);
+            }
+        }).listen(8080);
+    }
+}
+\end{lstlisting}
+
+\subsection{Interakce s Vert.x}\label{sub:interaction}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Duis pulvinar. Maecenas lorem. Mauris tincidunt sem sed arcu. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia SSH\footnote{Secure Shell} magni dolores eos qui ratione voluptatem sequi nesciunt. Phasellus rhoncus. Praesent vitae arcu tempor neque lacinia pretium. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Etiam posuere lacus quis dolor. Curabitur bibendum justo non orci. Praesent in mauris eu tortor porttitor accumsan. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Donec quis nibh at felis congue commodo. Integer tempor. Maecenas libero.e.
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[scale=0.21]{images/real_interaction}
+\par\end{centering}
+\caption{Modul CrasHub Shell\label{fig:real_interaction}}
+\end{figure}

@@ -1,0 +1,13 @@
+
+
+%<-----------------hlavièky stránek (fancyheaders)------>
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} %clear all header fields
+\renewcommand{\sectionmark}[1]{\markright{\small\textsc{#1}}} %hlavièka je v kapitálkách
+\renewcommand{\chaptermark}[1]{\markboth{\small\textsc{#1}}{}}
+\fancyhead[LE]{\slshape \leftmark} %kapitola je vlevo
+\fancyhead[RO]{\slshape \rightmark} %sekce je vpravo
+%<------------------------------------------------------>
+
+
