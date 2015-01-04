@@ -12,6 +12,6 @@ Features
 Required packages
 --------
 
-* texlive-latex-base
-* texlive-latex-extra
-* texlive-latex-recommended
+* texlive-latex-base or texlive-latex-extra
+* texlive-fonts-remommended
+* texlive-lang-czechslovak for czech babel
